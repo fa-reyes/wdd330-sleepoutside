@@ -175,6 +175,18 @@ button {
   padding: 0.5em;
   border: 1px solid var(--light-grey);
   max-width: 250px;
+  position: relative;
+}
+
+.discount-badge {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: #c0392b;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-weight: bold;
 }
 
 .product-card h2,
@@ -192,6 +204,23 @@ button {
 }
 
 /* End product list card */
+
+.product-detail__prices {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.product-detail__original {
+  margin: 0;
+  color: #777;
+}
+
+.product-detail__percent {
+  margin: 0;
+  color: #c0392b;
+  font-weight: bold;
+}
 
 .product-detail {
   padding: 1em;

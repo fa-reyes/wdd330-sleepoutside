@@ -23,11 +23,22 @@ export default class productDetails {
     }
 
     renderProductDetails() {
+        const isDiscounted = this.product.FinalPrice < this.product.SuggestedRetailPrice;
+        const discountPercent = Math.round(
+            ((this.product.SuggestedRetailPrice - this.product.FinalPrice) / this.product.SuggestedRetailPrice) * 100,
+        );
+
         document.querySelector(".product-detail").innerHTML = `
         <h3>${this.product.Brand.Name}</h3>
         <h2 class="divider">${this.product.NameWithoutBrand}</h2>
         <img class="divider" src="${this.product.Image}" alt="${this.product.Name}" />
-        <p class="product-card__price">${this.product.FinalPrice}</p>
+
+        <div class="product-detail__prices">
+            ${isDiscounted ? `<p class="product-detail__original"><s>$${this.product.SuggestedRetailPrice}</s></p>` : ""}
+            <p class="product-card__price">$${this.product.FinalPrice}</p>
+            ${isDiscounted ? `<p class="product-detail__percent">${discountPercent}% off</p>` : ""}
+        </div>
+            
         <p class="product__color">${this.product.Colors[0].ColorName}</p>
         <p class="product__description">${this.product.DescriptionHtmlSimple}</p>
         <div class="product-detail__add">
@@ -36,3 +47,4 @@ export default class productDetails {
         `;
     }
 }
+
