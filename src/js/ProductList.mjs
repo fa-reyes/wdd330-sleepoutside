@@ -6,9 +6,9 @@ function productCardTemplate(product) {
         ((product.SuggestedRetailPrice - product.FinalPrice) / product.SuggestedRetailPrice) * 100,);
 
     return `<li class="product-card">
-        <a href="product_pages/index.html?product=${product.Id}">
+        <a href="/product_pages/index.html?product=${product.Id}">
             ${isDiscounted ? `<span class= "discount-badge">${discountPercent}% Off</span>` : ""}
-            <img src="${product.Image}" alt="Image of ${product.Name}"
+            <img src="${product.Images.PrimaryMedium}" alt="Image of ${product.Name}"
             />
             <h3 class="card__brand">${product.Brand.Name}</h3>
             <h2 class="card__name">${product.NameWithoutBrand}</h2>
@@ -24,10 +24,15 @@ export default class ProductList {
         this.listElement = listElement;
     }
     async init() {
-        const list = await this.dataSource.getData();
+        const list = await this.dataSource.getData(this.category);
         this.renderList(list);
+
+        const title = document.getElementById("category-title");
+        const name = this.category.replace("-", " ");
+        title.textContent = `Top Products: ${name.charAt(0).toUpperCase() + name.slice(1)}`;
     }
 
+    
     renderList(list) {
         renderListWithTemplate(productCardTemplate, this.listElement, list)
     }

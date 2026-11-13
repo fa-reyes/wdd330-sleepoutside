@@ -11,6 +11,8 @@ export default class productDetails {
         this.product = await this.dataSource.findProductById(this.productId);
         this.renderProductDetails();
 
+        console.log(this.product);
+
         document
             .getElementById("addToCart")
             .addEventListener("click", this.addProductToCart.bind(this));
@@ -31,7 +33,7 @@ export default class productDetails {
         document.querySelector(".product-detail").innerHTML = `
         <h3>${this.product.Brand.Name}</h3>
         <h2 class="divider">${this.product.NameWithoutBrand}</h2>
-        <img class="divider" src="${this.product.Image}" alt="${this.product.Name}" />
+        <img class="divider" src="${this.product.Images.PrimaryLarge}" alt="${this.product.Name}" />
 
         <div class="product-detail__prices">
             ${isDiscounted ? `<p class="product-detail__original"><s>$${this.product.SuggestedRetailPrice}</s></p>` : ""}
