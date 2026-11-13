@@ -32,6 +32,7 @@ export default class ProductList {
         title.textContent = `Top Products: ${name.charAt(0).toUpperCase() + name.slice(1)}`;
     }
 
+    
     renderList(list) {
         renderListWithTemplate(productCardTemplate, this.listElement, list)
     }
